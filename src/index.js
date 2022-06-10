@@ -29,6 +29,14 @@ function* fetchAllMovies() {
         
 }
 
+function* fetchClickedMovie(){
+    try{
+
+    } catch{
+        console.alert('fetchClickedMovie error');
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
