@@ -13,6 +13,7 @@ function MovieList() {
     console.log('what genre is this?',genres);
 
     const bookdetails = (movie)=>{
+        dispatch({ type:'SET_DETAILS', payload: movie})
         
         history.push(`/Details/${movie.id}`)
     }
