@@ -4,10 +4,13 @@ import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import './Details.css'
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { teal } from '@mui/material/colors';
-import { ViewDayTwoTone } from '@mui/icons-material'
+import { teal, red, blueGrey} from '@mui/material/colors';
+import { CardContent } from '@mui/material'
+import CardActions from '@mui/material/CardActions';
 
 function Details() {
     const dispatch = useDispatch();
@@ -51,25 +54,40 @@ function Details() {
 
 
         return (
-            // make a button so that when you press it, it goes to the next movie.
             <div className='detail'>
                 <header>
                     <h2>Navation</h2>
-                    <ArrowBackIcon onClick={() => { viewDown() }} sx={{ fontSize: 50, color: teal[300] }} />
-                    <ArrowForwardIcon onClick={() => { viewUp() }} sx={{ fontSize: 50, color: teal[300] }} />
-                    <br />
                     <Button onClick={() => history.push('/')} variant='text'>Home</Button>
                 </header>
+                <div className='card'>
+                    <Card style={{backgroundColor: "purple"}}  sx={{ color: teal[300], minWidth: 275, maxWidth: 800, minHeight: 300, maxHeight: 1000 }} variant='outlined'>
+                        <CardContent>
+                            <CardActions >
 
-                <>
+                                <ArrowBackIcon onClick={() => { viewDown() }} sx={{ fontSize: 50, color: red[500] }} />
+                                <ArrowForwardIcon onClick={() => { viewUp() }} sx={{ fontSize: 50, color: red[500] }} />
 
-                    <h3>{movie.title}</h3>
-                    {currentGenre.map((genre, i) => (
-                        <h3 key={i}>{genre.name}</h3>)
-                    )}
-                    <img src={movie.poster} />
-                    <h3>{movie.description}</h3>
-                </>
+                            </CardActions>
+                            <Typography sx={{ color:red[500] }} variant="h5" component="div">
+                                <h3>{movie.title}</h3>
+                            </Typography>
+                            <Typography sx={{ mb: 1.5, color:teal[300] }} color="text.secondary">
+                                {currentGenre.map((genre, i) => (
+                                    <h3 key={i}>{genre.name}</h3>)
+                                )}
+                            </Typography>
+                            <img src={movie.poster} />
+                            <Typography sx={{ color:blueGrey[300] }}  variant="body2">
+                                <h3>{movie.description}</h3>
+                            </Typography>
+
+                        </CardContent>
+                    </Card>
+                </div>
+
+
+
+
             </div>
 
 
