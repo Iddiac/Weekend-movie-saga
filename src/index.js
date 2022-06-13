@@ -100,7 +100,7 @@ const genres = (state = [], action) => {
     }
 }
 
-const currentGenre = (state = {}, action) => {
+const currentGenre = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRE':
             console.log('this is action in current genre', action.payload)

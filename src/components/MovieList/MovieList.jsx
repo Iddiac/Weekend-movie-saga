@@ -19,10 +19,6 @@ function MovieList() {
         history.push(`/Details/${movie.id}`)
     }
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
-        dispatch({ type: 'FETCH_GENRES' });
-    }, []);
 
     return (
         <main>

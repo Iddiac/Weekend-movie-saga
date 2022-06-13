@@ -6,9 +6,15 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
+import {useEffect} from 'react'
+import {useDispatch} from 'react-redux'
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: 'FETCH_MOVIES' });
+    dispatch({ type: 'FETCH_GENRES' });
+}, []);
   return (
     <div className="App">
       <h1>The Movies Saga!</h1>
