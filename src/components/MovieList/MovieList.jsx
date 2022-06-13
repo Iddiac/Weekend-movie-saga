@@ -33,10 +33,12 @@ function MovieList() {
                         <div key={movie.id} onClick={()=> bookdetails(movie)} >
                             <h3>{movie.title}</h3>
                             <img src={movie.poster} alt={movie.title}/>
-                            {genres.map(genre=>
-                                <h3>{genre.name}</h3>)}
                         </div>
                     );
+                    /*
+                     {genres.map(genre=>
+                                <h3>{genre.name}</h3>)}
+                        */
                    // <h3>{movie.description}</h3>
                 })}
             </section>
