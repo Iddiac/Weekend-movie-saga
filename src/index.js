@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchAllGenres);
+    yield takeEvery('GET_GENRE', fetchCurrentGenres);
    // yield takeEvery('FETCH_DETAILS', fetchCurrentMovie);
 }
 
@@ -56,6 +57,18 @@ function* fetchAllGenres() {
 
 }
 
+function* fetchCurrentGenres(action) {
+    // get all movies from the DB
+    try {
+        const genres = yield axios.post('/api/genre', action.payload);
+        yield put({ type: 'SET_GENRE', payload: genres.data });
+
+    } catch {
+        console.log('get current genre error');
+    }
+
+}
+
 function* fetchMoviesAndGenres() {
     try {
         const fullDetails = yield axios.post('api/movies', action.payload)
@@ -87,6 +100,16 @@ const genres = (state = [], action) => {
     }
 }
 
+const currentGenre = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_GENRE':
+            console.log('this is action in current genre', action.payload)
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 const movieDetails = (state = {}, action) => {
     if (action.type === 'SET_DETAILS') {
         console.log(action.payload);
@@ -101,7 +124,8 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
-        movieDetails
+        movieDetails,
+        currentGenre
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

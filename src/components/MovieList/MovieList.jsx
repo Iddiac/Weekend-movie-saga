@@ -14,6 +14,7 @@ function MovieList() {
 
     const bookdetails = (movie)=>{
         dispatch({ type:'SET_DETAILS', payload: movie})
+        dispatch({type:'GET_GENRE', payload: movie})
         
         history.push(`/Details/${movie.id}`)
     }

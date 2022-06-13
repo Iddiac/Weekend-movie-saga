@@ -12,9 +12,11 @@ import { ViewDayTwoTone } from '@mui/icons-material'
 function Details() {
     const history = useHistory();
     const movies = useSelector(store => store.movies)
+    const currentGenre = useSelector(store => store.currentGenre)
     const params = useParams();
 
-    console.log(params);
+    
+    console.log('this is current genre', currentGenre)
     const movieId = params.movieId
 
 
@@ -51,6 +53,9 @@ function Details() {
                 <>
 
                     <h3>{movie.title}</h3>
+                    {currentGenre.map((genre,i)=>(
+                                <h3>{genre.name}</h3>)
+                    )}
                     <img src={movie.poster} />
                     <h3>{movie.description}</h3>
                 </>
